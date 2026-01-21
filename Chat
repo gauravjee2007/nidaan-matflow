@@ -2,72 +2,73 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>NIDAAN MATFLOW – Chat</title>
+<title>NIDAAN MATFLOW – Premium Chat</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
 *{
   box-sizing:border-box;
-  font-family:"Helvetica Neue",Helvetica,Arial,system-ui,-apple-system,sans-serif;
+  font-family:'Poppins',sans-serif;
 }
 
 body{
   margin:0;
-  background:#eaf5f3;
+  background:linear-gradient(135deg,#ff6f00,#ff9800);
   height:100vh;
   overflow:hidden;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 header{
   position:fixed;
   top:0; left:0;
   width:100%;
   z-index:100;
-  background:linear-gradient(135deg,#075e54,#128c7e);
+  backdrop-filter:blur(10px);
+  background:rgba(255,255,255,0.15);
   color:#fff;
   text-align:center;
   padding:14px 18px 16px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.15);
 }
 
-/* MAIN TITLE */
 .title-main{
-  font-size:30px;
+  font-size:28px;
   font-weight:700;
   letter-spacing:1px;
-  line-height:1.1;
 }
 
-/* SUB TITLE */
 .title-sub{
   font-size:13px;
   font-style:italic;
-  color:#d7ebe6;          /* lighter gray */
-  margin-top:6px;        /* spacing adjust */
-  line-height:1.2;
+  color:#ffe0b2;
+  margin-top:4px;
 }
 
 #darkToggle{
   position:absolute;
   right:16px;
   top:14px;
-  width:40px;
-  height:40px;
+  width:42px;
+  height:42px;
   border-radius:50%;
   border:none;
   cursor:pointer;
   font-size:18px;
   background:rgba(255,255,255,0.25);
   color:#fff;
+  backdrop-filter:blur(6px);
 }
 
-/* ================= CHAT ================= */
+/* CHAT */
 .chat-area{
   position:absolute;
-  top:78px;
-  bottom:76px;
+  top:88px;
+  bottom:90px;
   left:0; right:0;
-  padding:16px;
+  padding:20px;
   overflow-y:auto;
   display:flex;
   flex-direction:column;
@@ -76,54 +77,45 @@ header{
 }
 
 .message{
-  padding:9px 13px;
-  border-radius:12px;
-  max-width:65%;
-  font-size:18px;
-  line-height:1.5;
-  box-shadow:0 1px 6px rgba(0,0,0,0.12);
-  white-space: pre-wrap;
+  padding:12px 16px;
+  border-radius:18px;
+  max-width:70%;
+  font-size:16px;
+  line-height:1.6;
+  backdrop-filter:blur(10px);
+  animation:slideUp 0.35s ease;
 }
 
-/* USER */
+@keyframes slideUp{
+  from{transform:translateY(20px);opacity:0;}
+  to{transform:translateY(0);opacity:1;}
+}
+
 .user{
   align-self:flex-end;
-  background:#d9fdd3;
-  color:#000000;
+  background:rgba(255,224,178,0.9);
+  color:#4e342e;
+  box-shadow:0 6px 20px rgba(0,0,0,0.15);
 }
 
-/* AI */
 .ai{
   align-self:flex-start;
-  background:#ffffff;
-  color:#111;
+  background:rgba(255,255,255,0.85);
+  color:#333;
+  box-shadow:0 6px 20px rgba(0,0,0,0.15);
 }
 
-/* THINKING / TYPING */
-.thinking{background:#eefaf6;font-weight:600;}
-.typing{background:#def5ee;font-weight:600;}
-
-.dots::after{
-  content:'';
-  display:inline-block;
-  width:1.2em;
-  animation:dots 1.4s steps(3,end) infinite;
-}
-@keyframes dots{
-  0%{content:'';}
-  33%{content:'.';}
-  66%{content:'..';}
-  100%{content:'...';}
-}
+.thinking{background:rgba(255,248,225,0.9);font-weight:600;}
+.typing{background:rgba(255,236,179,0.9);font-weight:600;}
 
 .time{
   font-size:11px;
-  opacity:0.6;
+  opacity:0.5;
   margin-top:4px;
   text-align:right;
 }
 
-/* ================= FOOTER ================= */
+/* FOOTER */
 footer{
   position:fixed;
   bottom:0; left:0;
@@ -131,54 +123,65 @@ footer{
   z-index:100;
   display:flex;
   gap:10px;
-  padding:10px;
-  background:#f0fdfa;
-  border-top:1px solid #b2dfdb;
+  padding:14px;
+  background:rgba(255,255,255,0.25);
+  backdrop-filter:blur(10px);
+  box-shadow:0 -4px 20px rgba(0,0,0,0.2);
 }
 
 input{
   flex:1;
-  padding:12px 14px;
+  padding:14px 16px;
   font-size:15px;
-  border-radius:22px;
-  border:1px solid #9fd6c9;
+  border-radius:25px;
+  border:none;
+  outline:none;
+  background:rgba(255,255,255,0.8);
 }
 
-/* BUTTONS */
 button{
-  width:46px;
-  height:46px;
+  width:48px;
+  height:48px;
   border-radius:50%;
   border:none;
   font-size:18px;
   cursor:pointer;
+  transition:0.2s ease;
 }
 
-#sendBtn{background:#128c7e;color:#fff;}
-#micBtn{background:#075e54;color:#fff;}
-#micBtn.listening{background:#c62828;}
+#sendBtn{background:#ff9800;color:#fff;}
+#sendBtn:hover{transform:scale(1.1);}
+#micBtn{background:#f57c00;color:#fff;}
+#micBtn.listening{background:#c62828;animation:pulse 1s infinite;}
 
-/* ================= DARK MODE ================= */
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(198,40,40,0.6);}
+  100%{box-shadow:0 0 0 12px rgba(198,40,40,0);}
+}
+
+/* DARK MODE */
 body.dark{
-  background:#000000;
+  background:linear-gradient(135deg,#121212,#1c1c1c);
 }
+
+body.dark header,
 body.dark footer{
-  background:#000000;
-  border-top:1px solid #222;
+  background:rgba(0,0,0,0.4);
 }
+
 body.dark input{
-  background:#0b0b0b;
+  background:rgba(30,30,30,0.8);
   color:#fff;
-  border-color:#333;
 }
+
 body.dark .ai{
-  background:#1f2933;
-  color:#e5fdf6;
-  box-shadow:0 2px 10px rgba(255,255,255,0.08);
+  background:rgba(30,30,30,0.85);
+  color:#fff3e0;
 }
+
 body.dark .user{
-  background:#9ae6b4;
-  color:#000000;
+  background:rgba(255,183,77,0.9);
+  color:#000;
 }
 </style>
 </head>
@@ -188,28 +191,23 @@ body.dark .user{
 <header>
   <div class="title-main">NIDAAN MATFLOW</div>
   <div class="title-sub">(Your Intelligent Material Management)</div>
-  <button id="darkToggle" type="button">🌙</button>
+  <button id="darkToggle">🌙</button>
 </header>
 
 <div class="chat-area" id="chatArea">
   <div class="message ai">
-    Hello 👋 I’m <b>NIDAAN</b> — Your Intelligent Material Management Solution. How May I help You ?
+    Hello 👋 I’m <b>NIDAAN</b> — Your Intelligent Material Management Solution. How may I help you?
     <div class="time"></div>
   </div>
 </div>
 
 <footer>
   <input id="userInput" type="text" placeholder="Type your query..." autocomplete="off">
-  <button id="micBtn" type="button">🎙</button>
-  <button id="sendBtn" type="button">➤</button>
+  <button id="micBtn">🎙</button>
+  <button id="sendBtn">➤</button>
 </footer>
 
 <script>
-function renderMarkdown(text){
-  if(!text) return "";
-  return text.replace(/\*\*(.*?)\*\*/g,"<b>$1</b>").replace(/\n/g,"<br>");
-}
-
 const input=document.getElementById("userInput");
 const chat=document.getElementById("chatArea");
 const sendBtn=document.getElementById("sendBtn");
@@ -231,26 +229,10 @@ function scrollBottom(){
  chat.scrollTop=chat.scrollHeight;
 }
 
-input.addEventListener("keydown",e=>{
- if(e.key==="Enter"){e.preventDefault();sendMessage();}
-});
-
-let recognition=null;
-if(window.SpeechRecognition||window.webkitSpeechRecognition){
- const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
- recognition=new SR();
- recognition.lang="en-IN";
- recognition.onresult=e=>{input.value=e.results[0][0].transcript;};
- recognition.onend=()=>micBtn.classList.remove("listening");
-}
-
-micBtn.onclick=()=>{
- if(!recognition)return;
- micBtn.classList.add("listening");
- recognition.start();
-};
-
 sendBtn.onclick=sendMessage;
+input.addEventListener("keydown",e=>{
+ if(e.key==="Enter") sendMessage();
+});
 
 function sendMessage(){
  const text=input.value.trim();
@@ -260,42 +242,26 @@ function sendMessage(){
  user.className="message user";
  user.innerHTML=`${text}<div class="time">${now()}</div>`;
  chat.appendChild(user);
- scrollBottom();
  input.value="";
+ scrollBottom();
 
- const thinking=document.createElement("div");
- thinking.className="message ai thinking";
- thinking.innerHTML=`NIDAAN AI is thinking<span class="dots"></span>`;
- chat.appendChild(thinking);
+ const typing=document.createElement("div");
+ typing.className="message ai typing";
+ typing.innerHTML="NIDAAN is typing...";
+ chat.appendChild(typing);
  scrollBottom();
 
  setTimeout(()=>{
-  thinking.remove();
-  const typing=document.createElement("div");
-  typing.className="message ai typing";
-  typing.innerHTML=`NIDAAN AI is typing<span class="dots"></span>`;
-  chat.appendChild(typing);
+  typing.remove();
+  const ai=document.createElement("div");
+  ai.className="message ai";
+  ai.innerHTML=`Premium response received ✨<div class="time">${now()}</div>`;
+  chat.appendChild(ai);
   scrollBottom();
-
-  fetch("https://n8n-oazxlbnc.us-west-1.clawcloudrun.com/webhook/1gIGDU",{
-   method:"POST",
-   headers:{"Content-Type":"application/json"},
-   body:JSON.stringify({message:text})
-  })
-  .then(r=>r.json())
-  .then(d=>{
-   typing.remove();
-   const ai=document.createElement("div");
-   ai.className="message ai";
-   ai.innerHTML=`${renderMarkdown(d.reply)}<div class="time">${now()}</div>`;
-   chat.appendChild(ai);
-   scrollBottom();
-  });
- },900);
+ },1000);
 }
-
-window.onload=scrollBottom;
 </script>
 
 </body>
 </html>
+
