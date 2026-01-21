@@ -37,7 +37,7 @@ header{
   width:95%;
   z-index:100;
   backdrop-filter:blur(14px);
-  background:rgba(255,255,255,0.35);
+  background:rgba(255,255,255,0.25);
   text-align:center;
   padding:14px 18px 16px;
   border-radius:18px;
@@ -49,14 +49,15 @@ header{
   font-size:28px;
   font-weight:800;
   letter-spacing:1px;
-  color:#000;
+  color:#ffffff; /* WHITE */
 }
 
 /* SUB TITLE */
 .title-sub{
   font-size:14px;
-  font-weight:700;
-  color:#000;
+  font-weight:600;
+  font-style:italic; /* ITALIC */
+  color:#ffffff;     /* WHITE */
   margin-top:4px;
 }
 
@@ -70,8 +71,8 @@ header{
   border:none;
   cursor:pointer;
   font-size:18px;
-  background:rgba(0,0,0,0.15);
-  color:#000;
+  background:rgba(0,0,0,0.3); /* LIGHT BLACK */
+  color:#fff;
 }
 
 /* CHAT */
@@ -170,18 +171,26 @@ button{
   font-size:18px;
   cursor:pointer;
   transition:0.2s ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-#sendBtn{
-  background:linear-gradient(135deg,#ff9800,#ff6f00);
+/* New MIC Button Look */
+#micBtn{
+  background:linear-gradient(135deg,#ff8f00,#ff6f00);
   color:#fff;
+  box-shadow:0 6px 16px rgba(0,0,0,0.2);
+}
+#micBtn:hover{transform:scale(1.1);}
+
+/* New SEND Button Look */
+#sendBtn{
+  background:linear-gradient(135deg,#ff5722,#ff9800);
+  color:#fff;
+  box-shadow:0 6px 16px rgba(0,0,0,0.2);
 }
 #sendBtn:hover{transform:scale(1.1);}
-
-#micBtn{
-  background:linear-gradient(135deg,#f57c00,#ef6c00);
-  color:#fff;
-}
 
 /* DARK MODE */
 body.dark{
@@ -232,7 +241,7 @@ body.dark .user{
 
 <footer>
   <input id="userInput" type="text" placeholder="Type your query..." autocomplete="off">
-  <button id="micBtn">🎙</button>
+  <button id="micBtn">🎤</button>
   <button id="sendBtn">➤</button>
 </footer>
 
@@ -293,4 +302,3 @@ function sendMessage(){
 
 </body>
 </html>
-
