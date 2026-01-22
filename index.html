@@ -287,14 +287,15 @@ function sendMessage(){
     chat.appendChild(ai);
     scrollBottom();
   })
-  .catch(() => {
-    typing.remove();
-    const ai = document.createElement("div");
-    ai.className = "message ai";
-    ai.innerHTML = `⚠️ Server not reachable<div class="time">${now()}</div>`;
-    chat.appendChild(ai);
-    scrollBottom();
-  });
+  .catch((err) => {
+  console.error("FETCH ERROR:", err); // ← ye bahut important hai
+  typing.remove();
+  const ai = document.createElement("div");
+  ai.className = "message ai";
+  ai.innerHTML = `⚠️ Server not reachable<div class="time">${now()}</div>`;
+  chat.appendChild(ai);
+  scrollBottom();
+});
 }
 </script>
 
