@@ -280,7 +280,7 @@ function sendMessage(){
   .then(res => res.json())
   .then(data => {
     typing.remove();
-    const reply = data.reply || data.text || JSON.stringify(data);
+    const reply = data.reply || data.output || data.text || JSON.stringify(data);
     const ai = document.createElement("div");
     ai.className = "message ai";
     ai.innerHTML = `${reply}<div class="time">${now()}</div>`;
@@ -288,17 +288,42 @@ function sendMessage(){
     scrollBottom();
   })
   .catch((err) => {
-  console.error("FETCH ERROR:", err); // ← ye bahut important hai
-  typing.remove();
-  const ai = document.createElement("div");
-  ai.className = "message ai";
-  ai.innerHTML = `⚠️ Server not reachable<div class="time">${now()}</div>`;
-  chat.appendChild(ai);
-  scrollBottom();
-});
+    console.error("FETCH ERROR:", err);
+    typing.remove();
+    const ai = document.createElement("div");
+    ai.className = "message ai";
+    ai.innerHTML = `⚠️ Server not reachable<div class="time">${now()}</div>`;
+    chat.appendChild(ai);
+    scrollBottom();
+  });
 }
+
+/* 🎤 Microphone Feature */
+let recognition;
+if ('webkitSpeechRecognition' in window) {
+  recognition = new webkitSpeechRecognition();
+  recognition.continuous = false;
+  recognition.lang = "en-IN";
+  recognition.interimResults = false;
+
+  recognition.onresult = function(event) {
+    const transcript = event.results[0][0].transcript;
+    input.value = transcript;
+  };
+
+  recognition.onerror = function(event) {
+    alert("Mic error: " + event.error);
+  };
+}
+
+micBtn.onclick = () => {
+  if (recognition) {
+    recognition.start();
+  } else {
+    alert("Speech recognition not supported in this browser");
+  }
+};
 </script>
 
 </body>
 </html>
-
