@@ -17,106 +17,109 @@ body{
   margin:0;
   height:100vh;
   overflow:hidden;
-  background:linear-gradient(135deg,#ff6f00,#ff9800,#ffb74d);
-  background-size:300% 300%;
-  animation:bgMove 12s ease infinite;
-}
-
-@keyframes bgMove{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+  background:#fff3e0;
 }
 
 /* HEADER */
 header{
   position:fixed;
-  top:12px;
-  left:50%;
-  transform:translateX(-50%);
-  width:95%;
+  top:0;
+  left:0;
+  width:100%;
   z-index:100;
-  backdrop-filter:blur(14px);
-  background:rgba(255,255,255,0.25);
+  background:linear-gradient(135deg,#e65100,#ff6f00);
   text-align:center;
-  padding:14px 18px 16px;
-  border-radius:18px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  padding:14px 16px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.25);
 }
 
 .title-main{
-  font-size:28px;
+  font-size:22px;
   font-weight:800;
-  letter-spacing:1px;
   color:#ffffff;
+  letter-spacing:1px;
 }
 
 .title-sub{
-  font-size:14px;
-  font-weight:600;
+  font-size:12px;
   font-style:italic;
-  color:#ffffff;
-  margin-top:4px;
+  color:#ffe0b2;
+  margin-top:2px;
 }
 
 #darkToggle{
   position:absolute;
-  right:14px;
-  top:14px;
-  width:42px;
-  height:42px;
+  right:12px;
+  top:12px;
+  width:40px;
+  height:40px;
   border-radius:50%;
   border:none;
   cursor:pointer;
   font-size:18px;
-  background:rgba(0,0,0,0.3);
+  background:rgba(0,0,0,0.25);
   color:#fff;
 }
 
-/* CHAT */
+/* CHAT AREA */
 .chat-area{
   position:absolute;
-  top:110px;
-  bottom:100px;
-  left:0; right:0;
-  padding:20px;
+  top:82px;
+  bottom:90px;
+  left:0;
+  right:0;
+  padding:16px;
   overflow-y:auto;
   display:flex;
   flex-direction:column;
-  gap:14px;
+  gap:12px;
+  background:#fff8f0;
   scroll-behavior:smooth;
 }
 
+/* MESSAGE */
 .message{
   padding:14px 18px;
   border-radius:20px;
-  max-width:70%;
-  font-size:16px;
+  max-width:85%;
+  font-size:15px;
   line-height:1.6;
-  backdrop-filter:blur(12px);
   animation:slideUp 0.3s ease;
 }
 
 @keyframes slideUp{
-  from{transform:translateY(15px);opacity:0;}
+  from{transform:translateY(10px);opacity:0;}
   to{transform:translateY(0);opacity:1;}
 }
 
 .user{
   align-self:flex-end;
-  background:rgba(255,224,178,0.95);
+  background:#ffe0b2;
   color:#4e342e;
-  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+  box-shadow:0 6px 15px rgba(0,0,0,0.15);
 }
 
 .ai{
   align-self:flex-start;
-  background:rgba(255,255,255,0.95);
+  background:#ffffff;
   color:#333;
-  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+  box-shadow:0 6px 15px rgba(0,0,0,0.15);
 }
 
-.typing{background:rgba(255,236,179,0.95);font-weight:600;}
+/* FLOATING THINK "VALIDATING" */
+.typing{
+  align-self:flex-start;
+  background:#fff3cd;
+  color:#6d4c41;
+  font-weight:600;
+  animation:floating 1.6s ease-in-out infinite;
+}
+
+@keyframes floating{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+  100%{transform:translateY(0)}
+}
 
 .time{
   font-size:11px;
@@ -128,38 +131,34 @@ header{
 /* FOOTER */
 footer{
   position:fixed;
-  bottom:12px;
-  left:50%;
-  transform:translateX(-50%);
-  width:95%;
+  bottom:0;
+  left:0;
+  width:100%;
   z-index:100;
   display:flex;
   gap:10px;
-  padding:14px;
-  background:rgba(255,255,255,0.35);
-  backdrop-filter:blur(14px);
-  border-radius:20px;
-  box-shadow:0 -6px 25px rgba(0,0,0,0.2);
+  padding:12px;
+  background:#ffffff;
+  box-shadow:0 -4px 18px rgba(0,0,0,0.2);
 }
 
 input{
   flex:1;
   padding:14px 18px;
-  font-size:15px;
+  font-size:14px;
   border-radius:25px;
   border:none;
   outline:none;
-  background:rgba(255,255,255,0.9);
+  background:#fff3e0;
 }
 
 button{
-  width:48px;
-  height:48px;
+  width:46px;
+  height:46px;
   border-radius:50%;
   border:none;
   font-size:18px;
   cursor:pointer;
-  transition:0.2s ease;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -177,31 +176,29 @@ button{
 
 /* DARK MODE */
 body.dark{
-  background:linear-gradient(135deg,#121212,#1c1c1c);
+  background:#121212;
 }
 
-body.dark header,
+body.dark .chat-area{
+  background:#1e1e1e;
+}
+
 body.dark footer{
-  background:rgba(0,0,0,0.5);
-}
-
-body.dark .title-main,
-body.dark .title-sub{
-  color:#fff;
+  background:#000;
 }
 
 body.dark input{
-  background:rgba(30,30,30,0.8);
+  background:#2c2c2c;
   color:#fff;
 }
 
 body.dark .ai{
-  background:rgba(30,30,30,0.85);
+  background:#2a2a2a;
   color:#fff3e0;
 }
 
 body.dark .user{
-  background:rgba(255,183,77,0.9);
+  background:#ffcc80;
   color:#000;
 }
 </style>
@@ -211,13 +208,13 @@ body.dark .user{
 
 <header>
   <div class="title-main">NIDAAN MATFLOW</div>
-  <div class="title-sub">(Your Intelligent Material Management)</div>
+  <div class="title-sub">(Your AI Partner for Material Management)</div>
   <button id="darkToggle">🌙</button>
 </header>
 
 <div class="chat-area" id="chatArea">
   <div class="message ai">
-    Hello 👋 I’m <b>NIDAAN</b> — Your Intelligent Material Management Solution. How may I help you?
+    Hello 👋 I’m <b>NIDAAN MATFLOW</b> — Your intelligent material assistant. How may I help you?
     <div class="time"></div>
   </div>
 </div>
@@ -268,7 +265,7 @@ function sendMessage(){
 
   const typing = document.createElement("div");
   typing.className = "message ai typing";
-  typing.innerHTML = "NIDAAN is typing...";
+  typing.innerHTML = "NIDAAN is validating material records…";
   chat.appendChild(typing);
   scrollBottom();
 
@@ -287,8 +284,7 @@ function sendMessage(){
     chat.appendChild(ai);
     scrollBottom();
   })
-  .catch((err) => {
-    console.error("FETCH ERROR:", err);
+  .catch(() => {
     typing.remove();
     const ai = document.createElement("div");
     ai.className = "message ai";
@@ -297,32 +293,6 @@ function sendMessage(){
     scrollBottom();
   });
 }
-
-/* 🎤 Microphone Feature */
-let recognition;
-if ('webkitSpeechRecognition' in window) {
-  recognition = new webkitSpeechRecognition();
-  recognition.continuous = false;
-  recognition.lang = "en-IN";
-  recognition.interimResults = false;
-
-  recognition.onresult = function(event) {
-    const transcript = event.results[0][0].transcript;
-    input.value = transcript;
-  };
-
-  recognition.onerror = function(event) {
-    alert("Mic error: " + event.error);
-  };
-}
-
-micBtn.onclick = () => {
-  if (recognition) {
-    recognition.start();
-  } else {
-    alert("Speech recognition not supported in this browser");
-  }
-};
 </script>
 
 </body>
